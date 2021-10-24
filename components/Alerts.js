@@ -36,13 +36,13 @@ const Alerts = (props) => {
 
     useEffect(() => {
         //console.log('this runs');
-        console.log(`longitude: ${props.longitude} | latitude: ${props.latitude}`);
+        //console.log(`longitude: ${props.longitude} | latitude: ${props.latitude}`);
         let speedReturn = checkSpeedCam(props.latitude, props.longitude);
         let redLightReturn = checkRedLightCam(props.latitude, props.longitude);
-        console.log(speedReturn);
-        console.log(redLightReturn);
+        //console.log(speedReturn);
+        //console.log(redLightReturn);
         if ((!speedReturn)||(!redLightReturn)) {
-            console.log('nothing sign');
+            //console.log('nothing sign');
             changeAlert(0, roadIsCleanMessage);
         }
 
