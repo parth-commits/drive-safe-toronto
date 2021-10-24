@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { colors } from "../assets/colors";
+import Experiment from "./Experiment";
 
 /* Device dimensions, use to optimize for device of all sizes */
 const width = Dimensions.get('window').width;
@@ -8,7 +10,7 @@ const height = Dimensions.get('window').height;
 
 
 const CurrentStreet = (props) => {
-
+  const [experimentModalVisible, setExperimentModalVisible] = useState(false);
   /* For what road you are currently on tile */
   useEffect(() => {
     let url = `https://nominatim.openstreetmap.org/reverse.php?lat=${props.latitude}&lon=${props.longitude}&zoom=16&format=jsonv2`;
@@ -29,8 +31,12 @@ const CurrentStreet = (props) => {
 
     return (
         <View style={styles.parentView}>
-            <Image source={require('../assets/images/location-icon.png')} style={styles.currentStreetViewIcon}></Image>
-            <Text  numberOfLines={1} adjustsFontSizeToFit  style={styles.currentStreetViewText}>{props.currentStreet}</Text>
+          { experimentModalVisible && <Experiment setExperimentModalVisible={setExperimentModalVisible} experimentModalVisible={experimentModalVisible}></Experiment>}
+          <TouchableOpacity onPress={() => setExperimentModalVisible(true)}>
+            <Image source={require('../assets/images/ExperimentIcon.png')} style={styles.currentStreetViewIcon}></Image>
+          </TouchableOpacity>
+          <Image source={require('../assets/images/LocationIcon.png')} style={styles.currentStreetViewIcon}></Image>
+          <Text  numberOfLines={1} adjustsFontSizeToFit  style={styles.currentStreetViewText}>{props.currentStreet}</Text>
         </View>
     );
 }

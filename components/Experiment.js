@@ -9,34 +9,30 @@ const height = Dimensions.get('window').height;
 
 
 
-const Info = (props) => {
+const Experiment = (props) => {
  
     return (
         <Modal
           animationType="fade"
           transparent={true}
-          visible={props.infoModalVisible}
+          visible={props.experimentModalVisible}
           onRequestClose={() => {
-            props.setInfoModalVisible(!props.infoModalVisible);
+            props.setExperimentModalVisible(!props.experimentModalVisible);
           }}
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    <Text style={styles.infoModalTitle}>Info</Text>
+                    <View style={styles.titleList}>
+                        <Image source={require('../assets/images/ExperimentIcon.png')} style={styles.inlineImg}></Image>
+                        <Text style={styles.experimentModalTitle}>Experiment Lab</Text>
+
+                    </View>
+                    
                     <View style={styles.scrollV}>
                     <ScrollView>
-                        <View style={styles.infoModalItem}>
-                            <Text style={styles.infoModalItemTitle}>Purpose of App</Text>
-                            <Text style={styles.infoModalItemText}>This app will give you alerts when you are near a red light camera intersection or a speed camera area. This will help you to take precautions while driving.</Text>
-                        </View>
-                        <View style={styles.infoModalItem}>
-                            <Text style={styles.infoModalItemTitle}>Contact the developer</Text>
-                            <Text style={styles.infoModalItemText}>If you notice any bugs or errors, please feel free to message me - the developer - at parthsamsungdev@gmail.com</Text>
-                        </View>
-                        <View style={styles.infoModalItem}>
-                            <Text style={styles.infoModalItemTitle}>About the developer</Text>
-                            <Text style={styles.infoModalItemText}>This App was made by Parth Patel. </Text>
-                            <Text style={styles.infoModalItemText}>Made with <Image style={styles.inlineImg} source={require('../assets/images/heartIcon.png')}></Image> in Canada </Text>
+                        <View style={styles.experimentModalItem}>
+                            <Text style={styles.experimentModalItemTitle}>This is an experimental feature</Text>
+                            <Text style={styles.experimentModalItemText}>It may not work correctly at times. Please report to the developer if it isn't working frequently.</Text>
                         </View>
                     </ScrollView>
                     </View>
@@ -45,7 +41,7 @@ const Info = (props) => {
                     <View style={styles.bottomList}>
                         <Pressable
                         style={[styles.button, styles.buttonClose]}
-                        onPress={() => props.setInfoModalVisible(!props.infoModalVisible)}
+                        onPress={() => props.setExperimentModalVisible(!props.experimentModalVisible)}
                         >
                             <Text style={styles.textStyle}>Close</Text>
                         </Pressable>
@@ -58,27 +54,36 @@ const Info = (props) => {
 
 
 const styles = StyleSheet.create({
-    inlineImg: {
-        width: 20,
-        height: 20,
+    titleList: {
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        marginLeft: -10,
     },
-    infoModalItem: {
+    currentStreetViewIcon: {
+        width: 40,
+        height: 40,
+    },
+    inlineImg: {
+        width: 60,
+        height: 60,
+    },
+    experimentModalItem: {
         marginTop: 10,
     },
     scrollV: {
         height: height*0.55,
     },
-    infoModalItemText: {
+    experimentModalItemText: {
         fontSize: 15,
         fontFamily: 'mp-medium',
         color: colors.darkModeText,
     },
-    infoModalItemTitle: {
+    experimentModalItemTitle: {
         fontSize: 20,
         fontFamily: 'mp-bold',
         color: colors.darkModeText,
     },
-    infoModalTitle: {
+    experimentModalTitle: {
         fontSize: 30,
         fontFamily: 'mp-bold',
         color: colors.darkModeText,
@@ -97,7 +102,6 @@ const styles = StyleSheet.create({
         margin: 20,
         borderRadius: 20,
         padding: 35,
-        // alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -141,4 +145,4 @@ const styles = StyleSheet.create({
   });
 
 
-export default Info;
+export default Experiment;
